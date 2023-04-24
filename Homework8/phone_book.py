@@ -1,19 +1,19 @@
 # Показывает содержимое справочника
 def show_data():
-    with open('/Users/sedemnast/PycharmProjects/Python/Homework8/text.txt', 'r', encoding='utf-8') as file:
+    with open('text.txt', 'r', encoding='utf-8') as file:
         book = file.read()
     return book
 
 
 # Добавление контакта в справочник
 def new_data():
-    with open('/Users/sedemnast/PycharmProjects/Python/Homework8/text.txt', 'a', encoding='utf-8') as file:
+    with open('text.txt', 'a', encoding='utf-8') as file:
         file.write(input('\nВведите данные для контакта:\n') + '\n\n')
 
 
 # Поиск в справочнике
 def find_data():
-    with open('/Users/sedemnast/PycharmProjects/Python/Homework8/text.txt', 'r', encoding='utf-8') as file:
+    with open('text.txt', 'r', encoding='utf-8') as file:
         book = file.read().split('\n')
         temp = input('Кого хотите найти? Введите данные: ')
         for i in book:
@@ -23,22 +23,22 @@ def find_data():
 
 # Удаление данных
 def delete_contact(name):
-    with open("/Users/sedemnast/PycharmProjects/Python/Homework8/text.txt", "r", encoding="utf-8") as file:
+    with open("text.txt", "r", encoding="utf-8") as file:
         contacts = file.readlines()
-    with open("/Users/sedemnast/PycharmProjects/Python/Homework8/text.txt", "w", encoding="utf-8") as file:
+    with open("text.txt", "w", encoding="utf-8") as file:
         for contact in contacts:
             if name not in contact:
                 file.write(contact)
 
 
 # Изменение данных
-def change_contact(new_name, old_name):
-    with open("/Users/sedemnast/PycharmProjects/Python/Homework8/text.txt", "r", encoding="utf-8") as file:
+def change_contact(new_data, old_data):
+    with open("text.txt", "r", encoding="utf-8") as file:
         contacts = file.readlines()
-    with open("/Users/sedemnast/PycharmProjects/Python/Homework8/text.txt", "w", encoding="utf-8") as file:
+    with open("text.txt", "w", encoding="utf-8") as file:
         for contact in contacts:
-            if old_name in contact:
-                file.write(new_name + "\n")
+            if old_data in contact:
+                file.write(new_data + "\n")
             else:
                 file.write(contact)
 
@@ -57,10 +57,10 @@ while True:
         name = input('Кого нужно удалить? Введите данные: ')
         delete_contact(name)
     elif mode == '4':
-        old_name = input('Какой контакт надо переименовать? Введите данные: ')
-        new_name = input('Введите новое имя: ')
-        change_contact(new_name, old_name)
+        old_data = input('Введите данные, которые нужно изменить: ')
+        new_data = input('Введите новые данные: ')
+        change_contact(new_data, old_data)
     elif mode == '5':
         break
     else:
-        print('Не найдено. Попробуйте снова:)')
+        print('Некорректный ввод. Попробуйте снова.')
